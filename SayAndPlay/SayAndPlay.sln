@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28306.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{32EE82B0-6505-450D-9E1F-6B833C4CDB71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "Lib\Lib.csproj", "{6EA8F344-35B3-45C0-91E8-083057387879}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speech", "Lib\Speech.csproj", "{6EA8F344-35B3-45C0-91E8-083057387879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

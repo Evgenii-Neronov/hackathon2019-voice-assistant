@@ -16,6 +16,11 @@ namespace Lib.Models
     {
         MicrosoftVoice,
         IvonaVoice,
-        YandexVoice
+        IvonaMaxim,
+        YandexOksana,
+        YandexJane,
+        YandexOmazh,
+        YandexZahar,
+        YandexErmil
     }
 }

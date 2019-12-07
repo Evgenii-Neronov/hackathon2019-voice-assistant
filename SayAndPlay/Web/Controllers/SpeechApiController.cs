@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Http;
 using Lib.Helpers;
 using Lib.Models;
+using Lib.Models.History;
 using Lib.Models.Settings;
 
 namespace Web.Controllers
@@ -21,7 +22,7 @@ namespace Web.Controllers
 
         [HttpPost]
         [Route("v1/recognize/")]
-        public Task<string> RecognizeAsync()
+        public async Task<string> RecognizeAsync()
         {
             var httpRequest = HttpContext.Current.Request;
 
@@ -29,13 +30,19 @@ namespace Web.Controllers
 
             var recognizer = this.speechFactory.GetRecognizer(this.UserSettings);
 
-            return recognizer.RecognizeAsync(bytes);
+            var text = await recognizer.RecognizeAsync(bytes);
+
+            UserHistory.Save(this.GetUserId(), new HistoryItem(Who.User, text));
+
+            return text;
         }
 
         [HttpGet]
         [Route("v1/synthesize/")]
         public Task<byte[]> SynthesizeAsync(string text)
         {
+            UserHistory.Save(this.GetUserId(), new HistoryItem(Who.Assistent, text));
+
             var synthesizer = this.speechFactory.GetSynthesizer(this.UserSettings);
 
             return synthesizer.SynthesizeAsync(text);
@@ -44,9 +51,7 @@ namespace Web.Controllers
         [Route("v1/audio/"), HttpGet]
         public async Task<HttpResponseMessage> AudioAsync(string text)
         {
-            var synthesizer = this.speechFactory.GetSynthesizer(this.UserSettings);
-
-            var data = await synthesizer.SynthesizeAsync(text);
+            var data = await this.SynthesizeAsync(text);
 
             var memStream = new MemoryStream(data);
 

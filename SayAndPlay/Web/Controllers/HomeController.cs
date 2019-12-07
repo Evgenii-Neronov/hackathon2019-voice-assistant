@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using Lib.Models.History;
 using Lib.Models.Settings;
 using Web.Models;
 
@@ -17,7 +18,7 @@ namespace Web.Controllers
         {
             var userId = this.GetUserId();
 
-            var userSettings = UserSettings.Load(userId);
+            var userSettings = UserSettings.Load(this.GetUserId());
 
             var settingsModel = new SettingsModel()
             {
@@ -30,7 +31,11 @@ namespace Web.Controllers
 
         public ActionResult Log()
         {
-            return View();
+            var userId = this.GetUserId();
+
+            var userHistory = UserHistory.Load(userId);
+            
+            return View(userHistory);
         }
 
         public ActionResult Help()
@@ -69,6 +74,16 @@ namespace Web.Controllers
             Response.Cookies.Add(cookie);
 
             return Guid.Parse(cookie.Values["UserId"]);
+        }
+
+        [HttpPost]
+        public ActionResult ClearLog()
+        {
+            var userId = this.GetUserId();
+
+            UserHistory.Clear(userId);
+
+            return RedirectToAction("Log");
         }
     }
 }

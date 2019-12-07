@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Lib.Models.History.UserHistory
+
+@{
     ViewBag.Title = "История";
 }
 
@@ -6,3 +8,39 @@
     <h1>История</h1>
     <p class="lead">История разговоров</p>
 </div>
+
+@if (Model.HistoryItems.Any())
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Дата</th>
+            <th scope="col">Кто</th>
+            <th scope="col">Что</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        @foreach (var historyItem in Model.HistoryItems)
+        {
+            <tr>
+                <td>@historyItem.When</td>
+                <td>@historyItem.Who</td>
+                <td>@historyItem.What</td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+
+    using (Html.BeginForm("ClearLog", "Home", FormMethod.Post))
+    {
+     <button type="submit" class="btn btn-success">Очисить</button>
+    }
+}
+else
+{
+    <p style="margin: 25px;">Нет записей в истории</p>
+}
+

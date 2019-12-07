@@ -205,9 +205,9 @@
     <Content Include="Scripts\libs\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lib\Lib.csproj">
+    <ProjectReference Include="..\Lib\Speech.csproj">
       <Project>{6ea8f344-35b3-45c0-91e8-083057387879}</Project>
-      <Name>Lib</Name>
+      <Name>Speech</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

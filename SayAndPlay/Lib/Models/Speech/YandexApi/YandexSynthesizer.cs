@@ -10,6 +10,13 @@ namespace Lib.Models.Speech.YandexApi
 {
     public class YandexSynthesizer : YandexDefines, ISynthesizer
     {
+        private readonly string voice;
+
+        public YandexSynthesizer(string voice)
+        {
+            this.voice = voice;
+        }
+
         public async Task<byte[]> SynthesizeAsync(string text)
         {
             var client = new HttpClient();
@@ -18,7 +25,8 @@ namespace Lib.Models.Speech.YandexApi
             {
                 { "text", text},
                 { "lang", Lang},
-                { "folderId", FolderId}
+                { "folderId", FolderId},
+                { "voice", this.voice}
             };
             var content = new FormUrlEncodedContent(values);
             var response = await client.PostAsync(SynthesizeApiUrl, content);

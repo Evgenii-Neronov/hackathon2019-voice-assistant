@@ -30,8 +30,18 @@ namespace Lib.Models
                     return new MicrosoftSynthesizer("Microsoft Irina Desktop");
                 case Synthesizer.IvonaVoice:
                     return new MicrosoftSynthesizer("IVONA 2 Tatyana OEM");
-                case Synthesizer.YandexVoice:
-                    return new YandexSynthesizer();
+                case Synthesizer.IvonaMaxim:
+                    return new MicrosoftSynthesizer("IVONA 2 Maxim OEM");
+                case Synthesizer.YandexOksana:
+                    return new YandexSynthesizer("oksana");
+                case Synthesizer.YandexJane:
+                    return new YandexSynthesizer("jane");
+                case Synthesizer.YandexOmazh:
+                    return new YandexSynthesizer("omazh");
+                case Synthesizer.YandexZahar:
+                    return new YandexSynthesizer("zahar");
+                case Synthesizer.YandexErmil:
+                    return new YandexSynthesizer("ermil");
             }
 
             throw new NotSupportedException("Не поддерживаемый тип Synthesizer");

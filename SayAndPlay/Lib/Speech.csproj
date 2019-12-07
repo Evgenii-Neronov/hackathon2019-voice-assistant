@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\StreamExtensions.cs" />
+    <Compile Include="Models\History\HistoryItem.cs" />
+    <Compile Include="Models\History\UserHistory.cs" />
     <Compile Include="Models\Settings\UserSettings.cs" />
     <Compile Include="Models\SpeechFactory.cs" />
     <Compile Include="Models\SpeechTypes.cs" />
