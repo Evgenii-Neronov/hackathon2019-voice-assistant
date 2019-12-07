@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Lib.Models
+@model Web.Models.SettingsModel
+
+@{
     ViewBag.Title = "Настройки";
 }
 
@@ -6,3 +9,22 @@
     <h1>Настройки</h1>
     <p class="lead">Задайте параметры голосового помощника</p>
 </div>
+
+@using (Html.BeginForm("Settings", "Home", FormMethod.Post))
+{
+    <p style="margin: 30px;">
+        @Html.LabelFor(settings => settings.Recognizer, "Способ распознования речи")
+        @Html.DropDownListFor(settings => settings.Recognizer,
+            new SelectList(Enum.GetNames(typeof(Recognizer))), new {@class = "form-control"})
+    </p>
+
+    <p style="margin: 30px;">
+        @Html.LabelFor(settings => settings.Synthesizer, "Голос помощника")
+        @Html.DropDownListFor(settings => settings.Synthesizer,
+            new SelectList(Enum.GetNames(typeof(Synthesizer))), new {@class = "form-control"})
+    </p>
+
+    <button type="submit" class="btn btn-success">Сохранить</button>
+
+
+}

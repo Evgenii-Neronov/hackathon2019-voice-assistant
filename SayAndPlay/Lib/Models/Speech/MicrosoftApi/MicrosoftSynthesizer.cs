@@ -20,7 +20,7 @@ namespace Lib.Models.Speech.MicrosoftApi
                 using (var synth = new SpeechSynthesizer())
                 using (var stream = new MemoryStream())
                 {
-                    synth.Rate = 1;
+                    synth.Rate = 0;
                     synth.Volume = 100;
 
                     synth.SelectVoice(voiceName);

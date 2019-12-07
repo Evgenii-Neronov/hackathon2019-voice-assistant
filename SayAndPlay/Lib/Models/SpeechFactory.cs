@@ -1,4 +1,5 @@
 ﻿using System;
+using Lib.Models.Settings;
 using Lib.Models.Speech;
 using Lib.Models.Speech.GoogleApi;
 using Lib.Models.Speech.MicrosoftApi;
@@ -8,9 +9,9 @@ namespace Lib.Models
 {
     public class SpeechFactory
     {
-        public IRecognizer GetRecognizer(Recognizer recognizer)
+        public IRecognizer GetRecognizer(UserSettings userSettings)
         {
-            switch (recognizer)
+            switch (userSettings.Recognizer)
             {
                 case Recognizer.GoogleApi:
                     return new GoogleRecognizer();
@@ -21,9 +22,9 @@ namespace Lib.Models
             throw new NotSupportedException("Не поддерживаемый тип Recognizer");
         }
 
-        public ISynthesizer GetSynthesizer(Synthesizer synthesizer)
+        public ISynthesizer GetSynthesizer(UserSettings userSettings)
         {
-            switch (synthesizer)
+            switch (userSettings.Synthesizer)
             {
                 case Synthesizer.MicrosoftVoice:
                     return new MicrosoftSynthesizer("Microsoft Irina Desktop");

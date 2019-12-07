@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -7,12 +9,15 @@ using System.Web;
 using System.Web.Http;
 using Lib.Helpers;
 using Lib.Models;
+using Lib.Models.Settings;
 
 namespace Web.Controllers
 {
     public class SpeechApiController : ApiController
     {
         private readonly SpeechFactory speechFactory = new SpeechFactory();
+
+        private UserSettings UserSettings => UserSettings.Load(this.GetUserId());
 
         [HttpPost]
         [Route("v1/recognize/")]
@@ -22,7 +27,7 @@ namespace Web.Controllers
 
             var bytes = httpRequest.Files[0].InputStream.ToBytes();
 
-            var recognizer = this.speechFactory.GetRecognizer(Recognizer.YandexApi);
+            var recognizer = this.speechFactory.GetRecognizer(this.UserSettings);
 
             return recognizer.RecognizeAsync(bytes);
         }
@@ -31,7 +36,7 @@ namespace Web.Controllers
         [Route("v1/synthesize/")]
         public Task<byte[]> SynthesizeAsync(string text)
         {
-            var synthesizer = this.speechFactory.GetSynthesizer(Synthesizer.MicrosoftVoice);
+            var synthesizer = this.speechFactory.GetSynthesizer(this.UserSettings);
 
             return synthesizer.SynthesizeAsync(text);
         }
@@ -39,7 +44,7 @@ namespace Web.Controllers
         [Route("v1/audio/"), HttpGet]
         public async Task<HttpResponseMessage> AudioAsync(string text)
         {
-            var synthesizer = this.speechFactory.GetSynthesizer(Synthesizer.MicrosoftVoice);
+            var synthesizer = this.speechFactory.GetSynthesizer(this.UserSettings);
 
             var data = await synthesizer.SynthesizeAsync(text);
 
@@ -67,6 +72,15 @@ namespace Web.Controllers
             fullResponse.Content.Headers.ContentType = mediaTypeHeaderValue;
 
             return fullResponse;
+        }
+
+        private Guid GetUserId()
+        {
+            var cookie = Request.Headers.GetCookies("Hackathon2019_PlayAndSay").FirstOrDefault();
+
+            var userId = cookie?.Cookies?.FirstOrDefault()?.Values["UserId"];
+
+            return userId != null ? Guid.Parse(userId) : new Guid();
         }
     }
 }

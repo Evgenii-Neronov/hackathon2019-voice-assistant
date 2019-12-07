@@ -10,8 +10,6 @@ namespace Lib.Models.Speech.GoogleApi
     {
         public async Task<string> RecognizeAsync(byte[] bytes)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
             var speech = SpeechClient.Create();
 
             var response = await speech.RecognizeAsync(new RecognitionConfig()
@@ -21,7 +19,7 @@ namespace Lib.Models.Speech.GoogleApi
                 LanguageCode = "ru",
             }, RecognitionAudio.FromBytes(bytes));
 
-            return string.Join(" ", response.Results.SelectMany(x => x.Alternatives));
+            return string.Join(" ", response.Results.SelectMany(x => x.Alternatives.Select(a => a.Transcript)));
         }
     }
 }
