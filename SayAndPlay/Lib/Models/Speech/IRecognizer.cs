@@ -1,7 +1,9 @@
-﻿namespace Lib.Models.Speech
+﻿using System.Threading.Tasks;
+
+namespace Lib.Models.Speech
 {
     public interface IRecognizer
     {
-        string Recognize(byte[] bytes);
+        Task<string> RecognizeAsync(byte[] bytes);
     }
 }

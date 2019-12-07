@@ -10,21 +10,20 @@ namespace Lib.Models.Speech.YandexApi
 {
     public class YandexSynthesizer : YandexDefines, ISynthesizer
     {
-        public byte[] Synthesize(string text)
+        public async Task<byte[]> SynthesizeAsync(string text)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", "Bearer " + IamToken);
             var values = new Dictionary<string, string>
             {
-                {"text", text},
+                { "text", text},
                 { "lang", Lang},
                 { "folderId", FolderId}
             };
             var content = new FormUrlEncodedContent(values);
-            var response = client.PostAsync(SynthesizeApiUrl, content).GetAwaiter().GetResult();
-            var responseBytes = response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult();
+            var response = await client.PostAsync(SynthesizeApiUrl, content);
 
-            return responseBytes;
+            return await response.Content.ReadAsByteArrayAsync();
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Lib.Models.Speech.YandexApi
 {
     public class YandexRecognizer : YandexDefines, IRecognizer
     {
-        public string Recognize(byte[] bytes)
+        public async Task<string> RecognizeAsync(byte[] bytes)
         {
             var url = $"{RecognizeApiUrl}?topic={Topic}&folderId={FolderId}&format={Format}&sampleRateHertz={SampleRateHertz}&lang={Lang}";
 
@@ -14,9 +15,9 @@ namespace Lib.Models.Speech.YandexApi
             client.DefaultRequestHeaders.Add("Authorization", "Bearer " + IamToken);
             
             var byteContent = new ByteArrayContent(bytes);
-            var response = client.PostAsync(url, byteContent).GetAwaiter().GetResult();
+            var response = await client.PostAsync(url, byteContent);
 
-            var jsonString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            var jsonString = await response.Content.ReadAsStringAsync();
 
             var recoginzeResponse = JsonConvert.DeserializeObject<RecoginzeResponse>(jsonString);
 

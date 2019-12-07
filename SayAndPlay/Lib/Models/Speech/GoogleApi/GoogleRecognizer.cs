@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Google.Cloud.Speech.V1;
 
 namespace Lib.Models.Speech.GoogleApi
 {
     public class GoogleRecognizer : IRecognizer
     {
-        public string Recognize(byte[] bytes)
+        public async Task<string> RecognizeAsync(byte[] bytes)
         {
             Console.OutputEncoding = Encoding.UTF8;
 
             var speech = SpeechClient.Create();
 
-            var response = speech.Recognize(new RecognitionConfig()
+            var response = await speech.RecognizeAsync(new RecognitionConfig()
             {
                 Encoding = RecognitionConfig.Types.AudioEncoding.Linear16,
                 SampleRateHertz = 48000,

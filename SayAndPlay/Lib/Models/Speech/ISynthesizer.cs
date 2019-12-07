@@ -1,7 +1,9 @@
-﻿namespace Lib.Models.Speech
+﻿using System.Threading.Tasks;
+
+namespace Lib.Models.Speech
 {
     public interface ISynthesizer
     {
-        byte[] Synthesize(string text);
+        Task<byte[]> SynthesizeAsync(string text);
     }
 }

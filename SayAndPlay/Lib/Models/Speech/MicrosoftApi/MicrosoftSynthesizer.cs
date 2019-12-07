@@ -13,7 +13,7 @@ namespace Lib.Models.Speech.MicrosoftApi
             this.voiceName = voiceName;
         }
 
-        public byte[] Synthesize(string text)
+        public Task<byte[]> SynthesizeAsync(string text)
         {
             var task = Task.Run(() =>
             {
@@ -26,13 +26,18 @@ namespace Lib.Models.Speech.MicrosoftApi
                     synth.SelectVoice(voiceName);
 
                     synth.SetOutputToWaveStream(stream);
+
                     synth.Speak(text);
-                    
-                    return stream.GetBuffer();
+
+                    var buffer= stream.GetBuffer();
+
+                    stream.Flush();
+
+                    return buffer;
                 }
             });
 
-            return task.Result;
+            return task;
         }
     }
 }

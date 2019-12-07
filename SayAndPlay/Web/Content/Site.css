@@ -3,22 +3,67 @@
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+
 input,
 select,
 textarea {
     max-width: 280px;
+}
+
+*.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sayButton {
+
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 9px #999;
+
+}
+
+    .sayButton:hover {
+
+        background-color: #3e8e41
+
+    }
+
+    .sayButton:active {
+        background-color: #a52a2a;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+#myCanvas {
+    margin-top: 20px;
+    border: 1px solid #d3d3d3;
+    width: 302px;
+    height: 152px;
+}
+
+#output {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 19pt;
+    height: 80px;
 }

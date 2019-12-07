@@ -3,9 +3,32 @@
 }
 
 <div class="jumbotron">
-    <h1>Голосовой помощник</h1>
-    <p class="lead">Задайте свой вопрос вашему голосовому помощнику</p>
-    
-    @(ViewBag.Settings)
 
+    <table width="100%">
+        <tr>
+            <td align="center">
+                <h1>Say&Play</h1>
+                <p class="lead">Задайте свой вопрос удерживая кнопку</p>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <canvas id="myCanvas"> </canvas>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center">
+                <div id="output">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center">
+                <br />
+                <button id="sayButton" class="sayButton unselectable" ontouchstart="startRecording();" ontouchend="stopRecording();">Говорить</button>
+            </td>
+        </tr>
+    </table>
 </div>

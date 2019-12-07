@@ -15,6 +15,11 @@ namespace Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/libs/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/assistent").Include(
+                "~/Scripts/funcs.js",
+                "~/Scripts/recorder.js",
+                "~/Scripts/assistent.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/libs/bootstrap.js"));
 

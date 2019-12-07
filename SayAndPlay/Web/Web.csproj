@@ -152,8 +152,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\assistent.js" />
+    <Content Include="Scripts\funcs.js" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\libs\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\libs\jquery-3.3.1.js" />
     <Content Include="Scripts\libs\jquery-3.3.1.min.js" />
@@ -165,6 +168,7 @@
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\libs\modernizr-2.8.3.js" />
+    <Content Include="Scripts\recorder.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
