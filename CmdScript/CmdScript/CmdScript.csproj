@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29C98774-FA73-41F2-8C8C-963BB5066038}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DialogFlow</RootNamespace>
-    <AssemblyName>DialogFlow</AssemblyName>
+    <ProjectGuid>{24331827-594F-48DA-AF1D-F278611F7810}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CmdScript</RootNamespace>
+    <AssemblyName>CmdScript</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,15 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDialogFlow.cs" />
-    <Compile Include="Model\ConfigModel\AnswerFlow.cs" />
-    <Compile Include="Model\ConfigModel\ConfigParser.cs" />
-    <Compile Include="Model\ConfigModel\FlowConfig.cs" />
-    <Compile Include="Model\ConfigModel\PhraseFlow.cs" />
-    <Compile Include="Model\DialogFlow.cs" />
-    <Compile Include="Model\FlowContext.cs" />
-    <Compile Include="Model\PropertyContainer.cs" />
+    <Compile Include="AnswerFlow.cs" />
+    <Compile Include="FlowConfig.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PhraseFlow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

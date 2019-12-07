@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DialogFlow.Model.ConfigModel;
 
 namespace DialogFlow.Model
 {
-    class FlowContext
+    public class FlowContext
     {
+        public PropertyContainer PropertyContainer { get; set; }
+
+        public FlowConfig FlowConfig { get; set; }
+
         public string Answer { get; set; }
+
+        public string CurrentProcedure { get; set; }
+
+        public FlowContext(string configText)
+        {
+            FlowConfig = ConfigParser.Parse(configText);
+        }
     }
 }
