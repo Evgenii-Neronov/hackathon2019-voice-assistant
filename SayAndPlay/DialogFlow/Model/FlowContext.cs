@@ -12,6 +12,11 @@ namespace DialogFlow.Model
 
         public string CurrentProcedure { get; set; }
 
+        public FlowContext()
+        {
+            
+        }
+
         public FlowContext(string configText)
         {
             FlowConfig = ConfigParser.Parse(configText);

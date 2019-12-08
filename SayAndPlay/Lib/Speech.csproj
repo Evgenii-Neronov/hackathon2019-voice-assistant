@@ -93,6 +93,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\StreamExtensions.cs" />
     <Compile Include="Models\History\HistoryItem.cs" />
     <Compile Include="Models\History\UserHistory.cs" />

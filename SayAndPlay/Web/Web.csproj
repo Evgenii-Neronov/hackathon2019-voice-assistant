@@ -142,6 +142,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\UserFlowContextcs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +206,10 @@
     <Content Include="Scripts\libs\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DialogFlow\DialogFlow.csproj">
+      <Project>{29c98774-fa73-41f2-8c8c-963bb5066038}</Project>
+      <Name>DialogFlow</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lib\Speech.csproj">
       <Project>{6ea8f344-35b3-45c0-91e8-083057387879}</Project>
       <Name>Speech</Name>

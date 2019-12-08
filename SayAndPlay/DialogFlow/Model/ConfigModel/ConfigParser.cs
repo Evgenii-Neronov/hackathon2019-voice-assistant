@@ -23,7 +23,7 @@ namespace DialogFlow.Model.ConfigModel
                 {
                     flowConfig.PhraseFlow.Add(new PhraseFlow()
                     {
-                        ProcedureName = line.Split('>')[1],
+                        ProcedureName = line.Split('>')[1].Trim(),
                         Variants = line.Split('>')[0].Split('|').ToList()
                     });
                 }
@@ -31,6 +31,9 @@ namespace DialogFlow.Model.ConfigModel
                 {
                     if (line[0] == '[')
                     {
+                        if (currentAnswerFlow != null)
+                            flowConfig.AnswerFlow.Add(currentAnswerFlow);
+
                         currentAnswerFlow = new AnswerFlow()
                         {
                             ProcedureName = line.Replace("[", "").Replace("]", "")
@@ -40,12 +43,12 @@ namespace DialogFlow.Model.ConfigModel
                     {
                         if (line[0] != '>')
                         {
-                            if (line.Contains("&"))
+                            if (line.Contains("$"))
                             {
                                 currentAnswerFlow.AskSentences.Add(new AskSentence()
                                 {
-                                    Text = line.Split('&')[0],
-                                    AnswerVariable = line.Split('&')[1]
+                                    Text = line.Split('$')[0],
+                                    AnswerVariable = line.Split('$')[1]
                                 });
                             }
                             else
@@ -63,6 +66,7 @@ namespace DialogFlow.Model.ConfigModel
                     }
                 }
             }
+            flowConfig.AnswerFlow.Add(currentAnswerFlow);
 
             return flowConfig;
         }

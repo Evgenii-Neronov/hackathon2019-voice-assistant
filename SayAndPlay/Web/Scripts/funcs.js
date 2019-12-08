@@ -1,8 +1,14 @@
 ﻿
 function say(text) {
-    var a = new Audio(encodeURI("/v1/audio/?text=" + text));
-    a.volume = 1;
-    a.play();
+
+    $.get("/v1/talk/?text=" + text, function (data) {
+
+        var a = new Audio("/v1/audio/?text=" + data);
+        a.volume = 1;
+        a.play();
+
+    });
+
 }
 
 function uploadBlob(blob) {

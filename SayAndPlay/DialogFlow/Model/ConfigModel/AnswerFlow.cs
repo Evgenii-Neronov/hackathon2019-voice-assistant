@@ -17,6 +17,11 @@ namespace DialogFlow.Model.ConfigModel
 
         public AskSentence GetNextAskSentence => AskSentences.FirstOrDefault(x => x.UserAnswer == null);
 
+        public string GetAnswerValue(string answerVariable)
+        {
+            return Answers.FirstOrDefault(x => x.Variable == answerVariable).Value;
+        }
+
         public AnswerFlow()
         {
             AskSentences = new List<AskSentence>();
@@ -38,6 +43,11 @@ namespace DialogFlow.Model.ConfigModel
         {
             this.Variable = variable;
             this.Value = value;
+        }
+
+        public Answer()
+        {
+            
         }
 
         public string Variable { get; set; }

@@ -10,5 +10,7 @@ namespace Lib
         public static string GetAudioPath() => ConfigurationManager.AppSettings["AudioPath"] ?? Path.GetTempPath();
 
         public static string GetHistoryPath() => ConfigurationManager.AppSettings["HistoryPath"] ?? Path.GetTempPath();
+
+        public static string GetDialogFlowPath() => ConfigurationManager.AppSettings["DialogFlowPath"] ?? Path.GetTempPath();
     }
 }

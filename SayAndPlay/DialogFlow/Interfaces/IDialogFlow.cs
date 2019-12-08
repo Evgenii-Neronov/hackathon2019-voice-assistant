@@ -1,9 +1,10 @@
-﻿using DialogFlow.Model;
+﻿using System.Threading.Tasks;
+using DialogFlow.Model;
 
 namespace DialogFlow.Interfaces
 {
     public interface IDialogFlow
     {
-        FlowContext Talk(string sentence, FlowContext flowContext);
+        Task<FlowContext> TalkAsync(string sentence, FlowContext flowContext);
     }
 }
